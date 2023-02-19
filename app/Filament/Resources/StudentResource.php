@@ -23,7 +23,45 @@ class StudentResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('lrn')
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->numeric()
+                    ->length(12)
+                    ->placeholder('e.g. 784172592979'),
+                Forms\Components\TextInput::make('student_no')
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->regex('/^\d{2}-\d{4}$/')
+                    ->placeholder('e.g. ##-####'),
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->placeholder('e.g. student@gmail.com'),
+                Forms\Components\TextInput::make('first_name')
+                    ->label('First Name')
+                    ->required()
+                    ->string()
+                    ->placeholder('e.g. Jhon'),
+                Forms\Components\TextInput::make('middle_name')
+                    ->label('Middle Name')
+                    ->required()
+                    ->string()
+                    ->placeholder('Pales'),
+                Forms\Components\TextInput::make('last_name')
+                    ->label('Last Name')
+                    ->required()
+                    ->string()
+                    ->placeholder('e.g. Doe'),
+                Forms\Components\TextInput::make('suffix')
+                    ->nullable()
+                    ->string()
+                    ->placeholder('e.g. Jr.'),
+                Forms\Components\DatePicker::make('birthday')
+                    ->required()
+                    ->placeholder('e.g. September 10, 1992'),
+
             ]);
     }
 
